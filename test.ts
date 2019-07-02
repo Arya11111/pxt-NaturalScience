@@ -35,24 +35,6 @@ basic.forever(function () {
 })
 
 /**
- * demo4: Set the color of the RGB light according to the RGB component of the color sensor
- */
-let r = 0
-let g = 0
-let b = 0
-basic.forever(function () {
-    r = NaturalScience.getRed()
-    g = NaturalScience.getGreen()
-    b = NaturalScience.getBlue()
-    NaturalScience.showUserNumber(0, r)
-    NaturalScience.showUserNumber(1, g)
-    NaturalScience.showUserNumber(1, b)
-    NaturalScience.setRGB(50, NaturalScience.rgb(r, g, b))
-    basic.pause(1000)
-    NaturalScience.clear()
-})
-
-/**
  * demo5: Set the LED light switch
  */
 basic.forever(function () {

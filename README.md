@@ -23,7 +23,6 @@ Expansion board configuration: atmospheric pressure, temperature, humidity, colo
 ### block
 ![image](https://github.com/Arya11111/pxt-NaturalScience/blob/master/image/MBT0013_blok1.png)
 ![image](https://github.com/Arya11111/pxt-NaturalScience/blob/master/image/MBT0013_block2.png)
-![image](https://github.com/Arya11111/pxt-NaturalScience/blob/master/image/MBT0013_block3.png)
 
 
 ## Example
@@ -34,8 +33,6 @@ Expansion board configuration: atmospheric pressure, temperature, humidity, colo
 ![image](https://github.com/Arya11111/pxt-NaturalScience/blob/master/image/BME280.png)
 ### Water temperature,UV,Sound,Light
 ![image](https://github.com/Arya11111/pxt-NaturalScience/blob/master/image/params.png)
-### RGB LED
-![image](https://github.com/Arya11111/pxt-NaturalScience/blob/master/image/TCS.png)
 ### Set LED
 ![image](https://github.com/Arya11111/pxt-NaturalScience/blob/master/image/LED.png)
 
