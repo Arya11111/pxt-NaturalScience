@@ -113,7 +113,7 @@ namespace NaturalScience {
      * STM32  function
      */
 
-    let STM32_ADDRESS = 0X10;
+    let STM32_ADDRESS = 0X1F;
     let STM32_PID = 0X01;
     let REG_STM32_VID = 0X02;
     let REG_SEM32_LED_CONTROL = 0X03;
@@ -379,105 +379,3 @@ namespace NaturalScience {
         }
         return temp / 100;
     }
-
-    export enum RGBColors {
-        //% block=red
-        Red = 0xFF0000,
-        //% block=orange
-        Orange = 0xFFA500,
-        //% block=yellow
-        Yellow = 0xFFFF00,
-        //% block=green
-        Green = 0x00FF00,
-        //% block=blue
-        Blue = 0x0000FF,
-        //% block=indigo
-        Indigo = 0x4b0082,
-        //% block=violet
-        Violet = 0x8a2be2,
-        //% block=purple
-        Purple = 0xFF00FF,
-        //% block=white
-        White = 0xFFFFFF,
-        //% block=black
-        Black = 0x000000
-    }
-
-    /** 
-     * Set the color of the RGB light
-     */
-    //% blockId="setRGB" block="set RGB %brightness|color %rgb=RGB_color" blockGap=8
-    //% weight=1
-    //% brightness.min=0 brightness.max=255 brightness.defl=50
-    export function setRGB(brightness: number, rgb: number): void {
-        // let stride = mode === NeoPixelMode.RGBW ? 4 : 3;
-        let stride = 3;
-        let buf = pins.createBuffer(1 * stride);
-        let start = 0;
-        let length = 1;
-        let mode = 0;
-        let _matrixWidth = 0;
-        pins.digitalWritePin(DigitalPin.P15, 0);
-        rgb = rgb >> 0;
-        let red = unpackR(rgb);
-        let green = unpackG(rgb);
-        let blue = unpackB(rgb);
-
-        const br = brightness & 0xff;
-        if (br < 255) {
-            red = (red * br) >> 8;
-            green = (green * br) >> 8;
-            blue = (blue * br) >> 8;
-        }
-        const end = start + length;
-        for (let i = start; i < end; ++i) {
-            buf[i * stride + 0] = green;
-            buf[i * stride + 1] = red;
-            buf[i * stride + 2] = blue;
-        }
-        ws2812b.sendBuffer(buf, DigitalPin.P15);
-    }
-
-    /**
-     * Gets the RGB value of a known color
-    */
-    //% weight=2 blockGap=8
-    //% blockId="RGB_color" block="%color"
-    //% advanced=true
-    export function colors(color: RGBColors): number {
-        return color;
-    }
-
-    /**
-    * Converts red, green, blue channels into a RGB color
-    * @param red value of the red channel between 0 and 255. eg: 255
-    * @param green value of the green channel between 0 and 255. eg: 255
-    * @param blue value of the blue channel between 0 and 255. eg: 255
-    */
-    //% weight=1
-    //% blockId="rgb_led" block="red %red|green %green|blue %blue"
-    //% advanced=true
-    //% red.min=0 red.max=255 green.min=0 green.max=255 blue.min=0 blue.max=255
-    //% red.defl=255 green.defl=0 blue.defl=0;
-    export function rgb(red: number, green: number, blue: number): number {
-        return packRGB(red, green, blue);
-    }
-
-    function packRGB(a: number, b: number, c: number): number {
-        return ((a & 0xFF) << 16) | ((b & 0xFF) << 8) | (c & 0xFF);
-    }
-
-    function unpackR(rgb: number): number {
-        let r = (rgb >> 16) & 0xFF;
-        return r;
-    }
-    function unpackG(rgb: number): number {
-        let g = (rgb >> 8) & 0xFF;
-        return g;
-    }
-    function unpackB(rgb: number): number {
-        let b = (rgb) & 0xFF;
-        return b;
-    }
-
-}
