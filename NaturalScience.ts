@@ -157,10 +157,18 @@ namespace NaturalScience {
      */
     //% block="get UV"
     //% weight=69
-    export function getUV(): number {
+    export function getUV(): string {
         let ret1 = readReg(STM32_ADDRESS, REG_STM32_UV_H);
         let ret2 = readReg(STM32_ADDRESS, REG_SEM32_UV_L);
-        return ((ret1 << 8) | ret2) / 100;
+        let ret3 = ((ret1 << 8) | ret2);
+        let ret4 =  ret3 / 100
+        let ret5 = ret3 % 100;
+        let str = ".";
+        if(ret5 < 10){
+            str += "0" 
+        }
+        str = parseInt(ret4.toString()) + str + ret5;
+        return str;
     }
 
     /**
