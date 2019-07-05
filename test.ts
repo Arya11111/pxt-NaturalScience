@@ -27,7 +27,7 @@ basic.forever(function () {
  */
 basic.forever(function () {
     NaturalScience.showUserNumber(0, NaturalScience.TemperatureNumber())
-    NaturalScience.showUserNumber(1, NaturalScience.getUV())
+    NaturalScience.showUserText(1, NaturalScience.getUV())
     NaturalScience.showUserNumber(2, NaturalScience.getNoise())
     NaturalScience.showUserNumber(3, NaturalScience.getC())
     basic.pause(1000)
